@@ -1,3 +1,6 @@
+using CleanArch.Application.Interfaces;
+using CleanArch.Application.Mappings;
+using CleanArch.Application.Services;
 using CleanArch.Domain.Interfaces;
 using CleanArch.Infra.Data.Context;
 using CleanArch.Infra.Data.Repositories;
@@ -18,6 +21,10 @@ namespace CleanArch.Infra.ioC
 
             services.AddScoped<IProductRepository, ProductRepositoryEF>();
             services.AddScoped<ICategoryRepository, CategoryRepositoryEF>();
+
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
             
             return services;
         }
