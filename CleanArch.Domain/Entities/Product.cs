@@ -25,7 +25,7 @@ namespace CleanArch.Domain.Entities
             ValidateDomain(name, description, price, stock, image);
         }
 
-        private void Update(string name, string description, decimal price, int stock, string image, int categoryId)
+        public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
         {
             ValidateDomain(name, description, price, stock, image);
             CategoryId = categoryId;

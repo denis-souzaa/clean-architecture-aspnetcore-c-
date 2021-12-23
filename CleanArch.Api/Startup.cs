@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArch.Domain.Account;
 using CleanArch.Infra.ioC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +37,7 @@ namespace CleanArch.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRolesInitial)
         {
             if (env.IsDevelopment())
             {
@@ -48,7 +49,11 @@ namespace CleanArch.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            seedUserRolesInitial.SeedRoles();
+            seedUserRolesInitial.SeedUsers();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

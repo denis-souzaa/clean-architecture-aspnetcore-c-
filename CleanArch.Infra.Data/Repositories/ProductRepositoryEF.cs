@@ -22,15 +22,10 @@ namespace CleanArch.Infra.Data.Repositories
 
         public async Task<Product> GetByIdAsync(int? id)
         {
-            return await _context.Products.FindAsync();
-        }
-
-        public async Task<Product> GetProductByCategoryAsync(int? id)
-        {
             return await _context.Products.Include(c => c.Category)
-                                            .SingleAsync(p => p.Id == id) ;
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
-
+        
         public async Task<Product> CreateAsync(Product product)
         {
             _context.Add(product);
