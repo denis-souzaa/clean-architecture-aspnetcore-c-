@@ -53,8 +53,8 @@ namespace CleanArch.Api
             seedUserRolesInitial.SeedRoles();
             seedUserRolesInitial.SeedUsers();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
